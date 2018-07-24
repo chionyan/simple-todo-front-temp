@@ -15,3 +15,10 @@ export const create = (
     },
     body: JSON.stringify({ text, title }),
   }).then(response => response.json());
+
+export const destroy = (
+  todoId,
+) =>
+  fetch(`${ENDPOINT}/todos/${todoId}`, {
+    method: 'DELETE',
+  }).then(response => response.json());
