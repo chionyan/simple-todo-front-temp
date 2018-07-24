@@ -1,24 +1,18 @@
 import React from 'react';
 import TodoItem from './TodoItem';
+import { index } from '../api';
 
 class TodoList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      todos: [
-        {
-          title: 'Todo1のタイトル',
-          text: 'Todo1のテキスト',
-          created_at: 'Todo1の作成日時',
-        },
-        {
-          title: 'Todo2のタイトル',
-          text: 'Todo2のテキスト',
-          created_at: 'Todo2の作成日時',
-        },
-      ]
+      todos: [],
     };
-  };
+  }
+
+  componentDidMount() {
+    index().then(response => this.setState({ todos: response }));
+  }
 
   render() {
     return (
@@ -30,11 +24,13 @@ class TodoList extends React.Component {
               <th>タイトル</th>
               <th>テキスト</th>
               <th>作成日時</th>
+              <th>削除</th>
             </tr>
           </thead>
           <tbody>
             {this.state.todos.map(todo => (
               <TodoItem
+                id={todo.id}
                 title={todo.title}
                 text={todo.text}
                 created_at={todo.created_at}
