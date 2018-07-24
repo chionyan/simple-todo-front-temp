@@ -30,6 +30,7 @@ class TodoList extends React.Component {
           <tbody>
             {this.state.todos.map(todo => (
               <TodoItem
+                key={todo.id}
                 id={todo.id}
                 title={todo.title}
                 text={todo.text}
