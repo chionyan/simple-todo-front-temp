@@ -1,5 +1,5 @@
 import React from 'react';
-import { index } from './api';
+import { index, create } from './api';
 
 class App extends React.Component {
   render() {
@@ -8,6 +8,9 @@ class App extends React.Component {
         <h1>Hello World</h1>
         <button onClick={() => index().then(json => console.log(json))}>
           GET /todos
+        </button>
+        <button onClick={() => create('first todo', 'do it').then(json => console.log(json))}>
+          POST /todos
         </button>
       </div>
     );
