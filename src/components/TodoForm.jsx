@@ -19,9 +19,15 @@ class TodoForm extends React.Component {
   }
 
   handleSubmit(event) {
+    const todosUpdater = this.props.todosUpdater;
     const title = this.state.title;
     const text = this.state.text;
-    create(title, text).then(() => window.history.go());
+    create(title, text).then(() => {
+        todosUpdater();
+        this.setState({ title: '', text: '' });
+      }
+    );
+
     event.preventDefault();
   }
 

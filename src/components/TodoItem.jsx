@@ -3,6 +3,7 @@ import { destroy } from '../api';
 
 class TodoItem extends React.Component {
   render() {
+    const todosUpdater = this.props.todosUpdater;
     const id = this.props.id;
     const title = this.props.title;
     const text = this.props.text;
@@ -13,7 +14,7 @@ class TodoItem extends React.Component {
         <td>{text}</td>
         <td>{created_at}</td>
         <td>
-          <button onClick={() => destroy(id).then(() => window.history.go())}>
+          <button onClick={() => destroy(id).then(() => todosUpdater())}>
             Delete
           </button>
         </td>
