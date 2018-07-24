@@ -1,6 +1,14 @@
 import React from 'react';
 
 class TodoForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      title: '',
+      text: '',
+    };
+  }
+  
   render() {
     return (
       <div>
@@ -8,14 +16,14 @@ class TodoForm extends React.Component {
         <form>
           <div>
             <label>タイトル:</label>
-            <input type="text" name="title" />
+            <input type="text" name="title" value={this.state.title} />
           </div>
           <div>
             <label>テキスト:</label>
-            <input type="text" name="text" />
+            <input type="text" name="text" value={this.state.text} />
           </div>
           <div>
-            <input type="submit" value="submit" />
+            <input type="submit" value="submit"/>
           </div>
         </form>
       </div>
