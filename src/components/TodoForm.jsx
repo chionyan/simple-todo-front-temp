@@ -1,4 +1,5 @@
 import React from 'react';
+import { create } from '../api';
 
 class TodoForm extends React.Component {
   constructor(props) {
@@ -8,6 +9,7 @@ class TodoForm extends React.Component {
       text: '',
     };
     this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
   
   handleChange(event) {
@@ -16,11 +18,18 @@ class TodoForm extends React.Component {
     this.setState({ [name]: value });
   }
 
+  handleSubmit(event) {
+    const title = this.state.title;
+    const text = this.state.text;
+    create(title, text).then(() => window.history.go());
+    event.preventDefault();
+  }
+
   render() {
     return (
       <div>
         <h3>Todo Form</h3>
-        <form>
+        <form onSubmit={this.handleSubmit}>
           <div>
             <label>タイトル:</label>
             <input
